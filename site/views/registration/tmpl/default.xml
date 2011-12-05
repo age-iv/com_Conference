@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="Форма регистрации">
+		<message>
+			<![CDATA[Разметка для регистрационной формы]]>
+		</message>
+	</layout>
+	<state>
+		<name>Форма регистрации</name>
+	<params>
+		<param name="end_registration" type="calendar" default="" label="End date of registration" description="DETAILENDDATE" />
+		<param name="status" type="textarea" default="" label="status" rows="5" cols="50" description="Список ученых званий. Ученые звания пишутся в одну строку, раздилителем служит |. Вводится без переноса на новую строку." />
+		<param name="show_sex" type="radio" default="1" label="sex" description="show_or_hide_sex">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="show_date_of_birth" type="radio" default="1" label="date_of_bith" description="show_or_hide_date_of_bith">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="show_status" type="radio" default="1" label="status" description="show_or_hide_status">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="show_academic_degree" type="radio" default="1" label="academic_degree" description="show_or_hide_academic_degree">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="show_academic_rank" type="radio" default="1" label="academic_rank" description="show_or_hide_academic_rank">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="show_job" type="radio" default="1" label="job" description="show_or_hide_job">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="show_organisation" type="radio" default="1" label="organisation" description="show_or_hide_organisation">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="show_dept" type="radio" default="1" label="dept" description="show_or_hide_dept">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="show_course_group" type="radio" default="1" label="course_group" description="show_or_hide_course_group">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="show_country" type="radio" default="1" label="country" description="show_or_hide_country">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="show_region" type="radio" default="1" label="region" description="show_or_hide_region">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="show_city" type="radio" default="1" label="city" description="show_or_hide_city">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="show_street" type="radio" default="1" label="street" description="show_or_hide_street">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="show_house" type="radio" default="1" label="house" description="show_or_hide_house">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="show_flat" type="radio" default="1" label="flat" description="show_or_hide_flat">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="show_post_code" type="radio" default="1" label="post_code" description="show_or_hide_post_code">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="show_phone" type="radio" default="1" label="phone" description="show_or_hide_phone">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="show_fax" type="radio" default="1" label="fax" description="show_or_hide_fax">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="show_acomodation_person" type="radio" default="1" label="acomodation_person" description="show_or_hide_acomodation_person">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="show_hostel" type="radio" default="1" label="hostel" description="show_or_hide_hostel">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+	</params>
+	</state>
+</metadata>

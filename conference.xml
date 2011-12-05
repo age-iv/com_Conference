@@ -1,0 +1,477 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE install SYSTEM "http://dev.joomla.org/xml/1.5/component-install.dtd">
+<install type="component" version="1.5.22">
+ <name>Conference</name>
+ <creationDate>2009-2010</creationDate>
+ <author>Age</author>
+ <authorEmail>msageev@gmail.com</authorEmail>
+ <version>1.4.6</version>
+ <description>Компонент для конференции. Включает в себя регистрацию участников, заказ номера в гостинице и отправку тезисов</description>
+ 
+ <files folder="site">
+	<filename>conference.php</filename>
+	<filename>controller.php</filename>
+	<filename>index.html</filename>
+	<filename>router.php</filename>
+	<filename>js/index.html</filename>
+	<filename>js/val.js</filename>
+	<filename>js/style.css</filename>
+	<filename>views/index.html</filename>
+	<filename>views/show/index.html</filename>
+	<filename>views/show/view.html.php</filename>  
+	<filename>views/show/tmpl/index.html</filename>
+	<filename>views/show/tmpl/default.php</filename>
+	<filename>views/registration/index.html</filename>
+	<filename>views/registration/view.html.php</filename>  
+	<filename>views/registration/tmpl/index.html</filename>
+	<filename>views/registration/tmpl/default.php</filename>
+	<filename>views/registration/tmpl/default.xml</filename>
+	<filename>views/registration/tmpl/form.php</filename>
+	<filename>views/registration/tmpl/form.xml</filename>
+	<filename>views/hotel/index.html</filename>
+	<filename>views/hotel/view.html.php</filename>  
+	<filename>views/hotel/tmpl/index.html</filename>
+	<filename>views/hotel/tmpl/default.php</filename>
+	<filename>views/hotel/tmpl/default.xml</filename>
+	<filename>views/tesis/index.html</filename>
+	<filename>views/tesis/view.html.php</filename>  
+	<filename>views/tesis/tmpl/index.html</filename>
+	<filename>views/tesis/tmpl/default.php</filename>
+	<filename>views/tesis/tmpl/default.xml</filename>
+	<filename>models/index.html</filename>
+	<filename>models/show.php</filename>
+	<filename>models/registration.php</filename>
+	<filename>models/hotel.php</filename>
+	<filename>models/tesis.php</filename>
+ </files>
+
+    <languages folder="site">
+	<language tag="en-GB">language/en-GB/en-GB.com_conference.ini</language>
+    <language tag="ru-RU">language/ru-RU/ru-RU.com_conference.ini</language>
+  </languages>
+ 
+   <install>
+    <queries>
+    <query>
+CREATE TABLE IF NOT EXISTS `#__register` (
+  `id` int(11) NOT NULL auto_increment,
+  `surname` varchar(50) default NULL,
+  `name` varchar(100) default NULL,
+  `academic_degree` varchar(50) default NULL,
+  `job` varchar(50) NOT NULL default '',
+  `organisation` varchar(255) NOT NULL default '',
+  `street` varchar(100) default NULL,
+  `city` varchar(100) NOT NULL default '',
+  `region` varchar(100) NOT NULL default '',
+  `country` varchar(50) default NULL,
+  `post_code` varchar(20) NOT NULL default '',
+  `phone` varchar(20) NOT NULL default '',
+  `fax` varchar(20) NOT NULL default '',
+  `email` varchar(100) NOT NULL default '',
+  `username` varchar(150) default NULL,
+  `acomodation_person` varchar(50) NOT NULL,
+  `sex` varchar(2) NOT NULL,
+  `date_of_birth` varchar(10) NOT NULL,
+  `house` varchar(5) NOT NULL,
+  `flat` varchar(5) NOT NULL,
+  `status` varchar(50) NOT NULL,
+  `academic_rank` varchar(100) NOT NULL,
+  `course_group` varchar(5) NOT NULL,
+  `dept` varchar(100) NOT NULL,
+  `hostel` tinyint(4) NOT NULL default '0',
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=0 ; 
+    </query>
+    <query>
+  CREATE TABLE `#__hotel` (
+  `id` int(11) NOT NULL auto_increment,
+  `hotel` varchar(50) default NULL,
+  `type_room` varchar(100) default NULL,
+  `visit_date` varchar(20) NOT NULL,
+  `exit_date` varchar(20) NOT NULL,
+  `address` varchar(100) NOT NULL,
+  `wish` varchar(255) NOT NULL,
+  `username` varchar(50) default NULL,
+  PRIMARY KEY  (`id`)
+  ) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=utf8 AUTO_INCREMENT=0 ;    
+    </query>
+    <query>
+  CREATE TABLE IF NOT EXISTS `#__tesis` (
+  `id` int(11) NOT NULL auto_increment,
+  `authors` varchar(100) NOT NULL,
+  `name_lecture` text NOT NULL,
+  `type_lecture` varchar(50) default NULL,
+  `username` varchar(50) NOT NULL,
+  `file_name` varchar(255) NOT NULL,
+  `supervisor` varchar(100) NOT NULL,
+  `sections` varchar(100) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=0 ;
+    </query>
+    <query>
+  CREATE TABLE IF NOT EXISTS `#__params` (
+  `id` int(11) NOT NULL auto_increment,
+  `type` varchar(50) NOT NULL,
+  `value` varchar(50) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  KEY `id` (`id`)
+  ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=307 ;
+    </query>
+    <query>
+  INSERT INTO `#__params` (`id`, `type`, `value`, `title`) VALUES
+  (1, 'country', 'PS', 'Palestinian Territories'),
+  (2, 'country', 'AU', 'Австралия'),
+  (3, 'country', 'AT', 'Австрия'),
+  (4, 'country', 'AZ', 'Азербайджан'),
+  (5, 'country', 'AX', 'Аландские о-ва'),
+  (6, 'country', 'AL', 'Албания'),
+  (7, 'country', 'DZ', 'Алжир'),
+  (8, 'country', 'AS', 'Американские острова Самоа'),
+  (9, 'country', 'AI', 'Ангилья'),
+  (10, 'country', 'AO', 'Ангола'),
+  (11, 'country', 'AD', 'Андорра'),
+  (12, 'country', 'AQ', 'Антарктика'),
+  (13, 'country', 'AG', 'Антигуа и Барбуда'),
+  (14, 'country', 'AR', 'Аргентина'),
+  (15, 'country', 'AM', 'Армения'),
+  (16, 'country', 'AW', 'Аруба'),
+  (17, 'country', 'AF', 'Афганистан'),
+  (18, 'country', 'BS', 'Багамы'),
+  (19, 'country', 'BD', 'Бангладеш'),
+  (20, 'country', 'BB', 'Барбадос'),
+  (21, 'country', 'BH', 'Бахрейн'),
+  (22, 'country', 'BY', 'Беларусь'),
+  (23, 'country', 'BZ', 'Белиз'),
+  (24, 'country', 'BE', 'Бельгия'),
+  (25, 'country', 'BJ', 'Бенин'),
+  (26, 'country', 'BM', 'Бермуды'),
+  (27, 'country', 'BG', 'Болгария'),
+  (28, 'country', 'BO', 'Боливия'),
+  (29, 'country', 'BA', 'Босния и Герцеговина'),
+  (30, 'country', 'BW', 'Ботсвана'),
+  (31, 'country', 'BR', 'Бразилия'),
+  (32, 'country', 'IO', 'Британская территория Индийского океана'),
+  (33, 'country', 'BN', 'Бруней'),
+  (34, 'country', 'BF', 'Буркина-Фасо'),
+  (35, 'country', 'BI', 'Бурунди'),
+  (36, 'country', 'BT', 'Бутан'),
+  (37, 'country', 'VU', 'Вануату'),
+  (38, 'country', 'VA', 'Ватикан'),
+  (39, 'country', 'GB', 'Великобритания'),
+  (40, 'country', 'HU', 'Венгрия'),
+  (41, 'country', 'VE', 'Венесуэла'),
+  (42, 'country', 'VG', 'Виргинские о-ва, Великобритания'),
+  (43, 'country', 'VI', 'Виргинские о-ва, США'),
+  (44, 'country', 'TL', 'Восточный Тимор'),
+  (45, 'country', 'VN', 'Вьетнам'),
+  (46, 'country', 'GA', 'Габон'),
+  (47, 'country', 'HT', 'Гаити'),
+  (48, 'country', 'GY', 'Гайана'),
+  (49, 'country', 'GM', 'Гамбия'),
+  (50, 'country', 'GH', 'Гана'),
+  (51, 'country', 'GP', 'Гваделупа'),
+  (52, 'country', 'GT', 'Гватемала'),
+  (53, 'country', 'GN', 'Гвинея'),
+  (54, 'country', 'GW', 'Гвинея-Биссау'),
+  (55, 'country', 'DE', 'Германия'),
+  (56, 'country', 'GI', 'Гибралтар'),
+  (57, 'country', 'HN', 'Гондурас'),
+  (58, 'country', 'HK', 'Гонконг'),
+  (59, 'country', 'GD', 'Гренада'),
+  (60, 'country', 'GL', 'Гренландия'),
+  (61, 'country', 'GR', 'Греция'),
+  (62, 'country', 'GE', 'Грузия'),
+  (63, 'country', 'GU', 'Гуам'),
+  (64, 'country', 'DK', 'Дания'),
+  (65, 'country', 'CD', 'Демократическая республика Конго'),
+  (66, 'country', 'JE', 'Джерси'),
+  (67, 'country', 'DJ', 'Джибути'),
+  (68, 'country', 'DM', 'Доминика'),
+  (69, 'country', 'DO', 'Доминиканская республика'),
+  (70, 'country', 'EG', 'Египет'),
+  (71, 'country', 'ZM', 'Замбия'),
+  (72, 'country', 'EH', 'Западная Сахара'),
+  (73, 'country', 'ZW', 'Зимбабве'),
+  (74, 'country', 'IL', 'Израиль'),
+  (75, 'country', 'IN', 'Индия'),
+  (76, 'country', 'ID', 'Индонезия'),
+  (77, 'country', 'JO', 'Иордания'),
+  (78, 'country', 'IQ', 'Ирак'),
+  (79, 'country', 'IR', 'Иран'),
+  (80, 'country', 'IE', 'Ирландия'),
+  (81, 'country', 'IS', 'Исландия'),
+  (82, 'country', 'ES', 'Испания'),
+  (83, 'country', 'IT', 'Италия'),
+  (84, 'country', 'YE', 'Йемен'),
+  (85, 'country', 'KZ', 'Казахстан'),
+  (86, 'country', 'KY', 'Каймановы острова'),
+  (87, 'country', 'KH', 'Камбоджа'),
+  (88, 'country', 'CM', 'Камерун'),
+  (89, 'country', 'CA', 'Канада'),
+  (90, 'country', 'QA', 'Катар'),
+  (91, 'country', 'KE', 'Кения'),
+  (92, 'country', 'CY', 'Кипр'),
+  (93, 'country', 'KI', 'Кирибати'),
+  (94, 'country', 'CN', 'Китай'),
+  (95, 'country', 'CC', 'Кокосовые острова'),
+  (96, 'country', 'CO', 'Колумбия'),
+  (97, 'country', 'KM', 'Коморские острова'),
+  (98, 'country', 'CG', 'Конго'),
+  (99, 'country', 'CR', 'Коста-Рика'),
+  (100, 'country', 'CI', 'Кот-д\&#39;Ивуар'),
+  (101, 'country', 'CU', 'Куба'),
+  (102, 'country', 'KW', 'Кувейт'),
+  (103, 'country', 'KG', 'Кыргызстан'),
+  (104, 'country', 'LA', 'Лаос'),
+  (105, 'country', 'LV', 'Латвия'),
+  (106, 'country', 'LS', 'Лесото'),
+  (107, 'country', 'LR', 'Либерия'),
+  (108, 'country', 'LB', 'Ливан'),
+  (109, 'country', 'LY', 'Ливия'),
+  (110, 'country', 'LT', 'Литва'),
+  (111, 'country', 'LI', 'Лихтенштейн'),
+  (112, 'country', 'LU', 'Люксембург'),
+  (113, 'country', 'MU', 'Маврикий'),
+  (114, 'country', 'MR', 'Мавритания'),
+  (115, 'country', 'MG', 'Мадагаскар'),
+  (116, 'country', 'YT', 'Майорка'),
+  (117, 'country', 'MO', 'Макао'),
+  (118, 'country', 'MK', 'Македония'),
+  (119, 'country', 'MW', 'Малави'),
+  (120, 'country', 'MY', 'Малайзия'),
+  (121, 'country', 'ML', 'Мали'),
+  (122, 'country', 'UM', 'Малые отдаленные острова США'),
+  (123, 'country', 'MV', 'Мальдивы'),
+  (124, 'country', 'MT', 'Мальта'),
+  (125, 'country', 'MA', 'Марокко'),
+  (126, 'country', 'MQ', 'Мартиника'),
+  (127, 'country', 'MH', 'Маршалловы острова'),
+  (128, 'country', 'MX', 'Мексика'),
+  (129, 'country', 'FM', 'Микронезия'),
+  (130, 'country', 'MZ', 'Мозамбик'),
+  (131, 'country', 'MD', 'Молдова'),
+  (132, 'country', 'MC', 'Монако'),
+  (133, 'country', 'MN', 'Монголия'),
+  (134, 'country', 'MS', 'Монсеррат'),
+  (135, 'country', 'MM', 'Мьянма (Бирма)'),
+  (136, 'country', 'NA', 'Намибия'),
+  (137, 'country', 'NR', 'Науру'),
+  (138, 'country', 'NP', 'Непал'),
+  (139, 'country', 'NE', 'Нигерия'),
+  (140, 'country', 'NG', 'Нигерия'),
+  (141, 'country', 'AN', 'Нидерландские Антильские острова'),
+  (142, 'country', 'NL', 'Нидерланды'),
+  (143, 'country', 'NI', 'Никарагуа'),
+  (144, 'country', 'NU', 'Ниуэ'),
+  (145, 'country', 'NZ', 'Новая Зеландия'),
+  (146, 'country', 'NC', 'Новая Каледония'),
+  (147, 'country', 'NO', 'Норвегия'),
+  (148, 'country', 'GG', 'о. Гернси'),
+  (149, 'country', 'GS', 'о. Южная Георгия и Южные Сандвичевы острова'),
+  (150, 'country', 'AE', 'Объединенные Арабские Эмираты'),
+  (151, 'country', 'WF', 'о-ва Уоллис и Футуна'),
+  (152, 'country', 'HM', 'о-ва Херд и Макдональд'),
+  (153, 'country', 'OM', 'Оман'),
+  (154, 'country', 'CV', 'острова Зеленого мыса'),
+  (155, 'country', 'CK', 'острова Кука'),
+  (156, 'country', 'TC', 'острова Теркс и Кайкос'),
+  (157, 'country', 'BV', 'остров Буве'),
+  (158, 'country', 'IM', 'Остров Мэн'),
+  (159, 'country', 'NF', 'Остров Норфолк'),
+  (160, 'country', 'SH', 'остров Святой Елены'),
+  (161, 'country', 'PK', 'Пакистан'),
+  (162, 'country', 'PW', 'Палау'),
+  (163, 'country', 'PA', 'Панама'),
+  (164, 'country', 'PG', 'Папуа – Новая Гвинея'),
+  (165, 'country', 'PY', 'Парагвай'),
+  (166, 'country', 'PE', 'Перу'),
+  (167, 'country', 'PN', 'Питкэрн'),
+  (168, 'country', 'PL', 'Польша'),
+  (169, 'country', 'PT', 'Португалия'),
+  (170, 'country', 'PR', 'Пуэрто-Рико'),
+  (171, 'country', 'RE', 'Реюньон'),
+  (172, 'country', 'CX', 'Рождественские острова'),
+  (173, 'country', 'RU', 'Россия'),
+  (174, 'country', 'RW', 'Руанда'),
+  (175, 'country', 'RO', 'Румыния'),
+  (176, 'country', 'SV', 'Сальвадор'),
+  (177, 'country', 'WS', 'Самoа'),
+  (178, 'country', 'SM', 'Сан-Марино'),
+  (179, 'country', 'ST', 'Сан-Томе и Принсипе'),
+  (180, 'country', 'SA', 'Саудовская Аравия'),
+  (181, 'country', 'SZ', 'Свазиленд'),
+  (182, 'country', 'KP', 'Северная Корея'),
+  (183, 'country', 'MP', 'Северные Марианские острова'),
+  (184, 'country', 'SC', 'Сейшелы'),
+  (185, 'country', 'SN', 'Сенегал'),
+  (186, 'country', 'PM', 'Сен-Пьер и Микелон'),
+  (187, 'country', 'VC', 'Сент-Винсент и Гренадины'),
+  (188, 'country', 'KN', 'Сент-Китс и Невис'),
+  (189, 'country', 'LC', 'Сент-Люсия'),
+  (190, 'country', 'RS', 'Сербия'),
+  (191, 'country', 'CS', 'Сербия и Черногория'),
+  (192, 'country', 'SG', 'Сингапур'),
+  (193, 'country', 'SY', 'Сирия'),
+  (194, 'country', 'SK', 'Словакия'),
+  (195, 'country', 'SI', 'Словения'),
+  (196, 'country', 'SB', 'Соломоновы острова'),
+  (197, 'country', 'SO', 'Сомали'),
+  (198, 'country', 'SD', 'Судан'),
+  (199, 'country', 'SR', 'Суринам'),
+  (200, 'country', 'US', 'США'),
+  (201, 'country', 'SL', 'Сьерра-Леоне'),
+  (202, 'country', 'TJ', 'Таджикистан'),
+  (203, 'country', 'TH', 'Таиланд'),
+  (204, 'country', 'TW', 'Тайвань'),
+  (205, 'country', 'TZ', 'Танзания'),
+  (206, 'country', 'TG', 'Того'),
+  (207, 'country', 'TK', 'Токелау'),
+  (208, 'country', 'TO', 'Тонга'),
+  (209, 'country', 'TT', 'Тринидад и Тобаго'),
+  (210, 'country', 'TV', 'Тувалу'),
+  (211, 'country', 'TN', 'Тунис'),
+  (212, 'country', 'TM', 'Туркменистан'),
+  (213, 'country', 'TR', 'Турция'),
+  (214, 'country', 'UG', 'Уганда'),
+  (215, 'country', 'UZ', 'Узбекистан'),
+  (216, 'country', 'UA', 'Украина'),
+  (217, 'country', 'UY', 'Уругвай'),
+  (218, 'country', 'FO', 'Фарерские острова'),
+  (219, 'country', 'FJ', 'Фиджи'),
+  (220, 'country', 'PH', 'Филиппины'),
+  (221, 'country', 'FI', 'Финляндия'),
+  (222, 'country', 'FK', 'Фолклендские о-ва'),
+  (223, 'country', 'FR', 'Франция'),
+  (224, 'country', 'GF', 'Французская Гвинея'),
+  (225, 'country', 'PF', 'Французская Полинезия'),
+  (226, 'country', 'TF', 'Французские южные территории'),
+  (227, 'country', 'HR', 'Хорватия'),
+  (228, 'country', 'CF', 'Центрально-Африканская Республика'),
+  (229, 'country', 'TD', 'Чад'),
+  (230, 'country', 'ME', 'Черногория'),
+  (231, 'country', 'CZ', 'Чехия'),
+  (232, 'country', 'CL', 'Чили'),
+  (233, 'country', 'CH', 'Швейцария'),
+  (234, 'country', 'SE', 'Швеция'),
+  (235, 'country', 'SJ', 'Шпицберген и Ян-Майен'),
+  (236, 'country', 'LK', 'Шри-Ланка'),
+  (237, 'country', 'EC', 'Эквадор'),
+  (238, 'country', 'GQ', 'Экваториальная Гвинея'),
+  (239, 'country', 'ER', 'Эритрея'),
+  (240, 'country', 'EE', 'Эстония'),
+  (241, 'country', 'ET', 'Эфиопия'),
+  (242, 'country', 'ZA', 'Южная Африка'),
+  (243, 'country', 'KR', 'Южная Корея'),
+  (244, 'country', 'JM', 'Ямайка'),
+  (245, 'country', 'JP', 'Япония'),
+  (246, 'degree', 'o-d', 'без ученой степени'),
+  (247, 'degree', 'PhDArc', 'кандидат архитектурных наук'),
+  (248, 'degree', 'PhDB', 'кандидат биологических наук'),
+  (249, 'degree', 'PhDV', 'кандидат ветеринарных наук'),
+  (250, 'degree', 'PhDMil', 'кандидат военных наук'),
+  (251, 'degree', 'PhDG', 'кандидат географических наук'),
+  (252, 'degree', 'PhDGM', 'кандидат геолого-минералогических наук'),
+  (253, 'degree', 'PhDArt', 'кандидат искусствоведения'),
+  (254, 'degree', 'PhDH', 'кандидат исторических наук'),
+  (255, 'degree', 'PhDM', 'кандидат медицинских наук'),
+  (256, 'degree', 'PhDPedagog', 'кандидат педагогических наук'),
+  (257, 'degree', 'PhDPol', 'кандидат политологических наук'),
+  (258, 'degree', 'PhDPsych', 'кандидат психологических наук'),
+  (259, 'degree', 'PhDAgro', 'кандидат сельскохозяйственных наук'),
+  (260, 'degree', 'PhDSocial', 'кандидат социологических наук'),
+  (261, 'degree', 'PhD', 'кандидат технических наук'),
+  (262, 'degree', 'PhDPharm', 'кандидат фармацевтических наук'),
+  (263, 'degree', 'PhDPhM', 'кандидат физико-математических наук'),
+  (264, 'degree', 'PhDPhil', 'кандидат филологических наук'),
+  (265, 'degree', 'PhDPhilosophy', 'кандидат философских наук'),
+  (266, 'degree', 'PhDChem', 'кандидат химических наук'),
+  (267, 'degree', 'PhDEco', 'кандидат экономических наук'),
+  (268, 'degree', 'PhDLaw', 'кандидат юридических наук'),
+  (269, 'degree', 'DArc', 'доктор архитектурных наук'),
+  (270, 'degree', 'DB', 'доктор биологических наук'),
+  (271, 'degree', 'DV', 'доктор ветеринарных наук'),
+  (272, 'degree', 'DMil', 'доктор военных наук'),
+  (273, 'degree', 'DG', 'доктор географических наук'),
+  (274, 'degree', 'DGM', 'доктор геолого-минералогических наук'),
+  (275, 'degree', 'DArt', 'доктор искусствоведения'),
+  (276, 'degree', 'DH', 'доктор исторических наук'),
+  (277, 'degree', 'PhDM', 'доктор медицинских наук'),
+  (278, 'degree', 'DPedagog', 'доктор педагогических наук'),
+  (279, 'degree', 'DPol', 'доктор политологических наук'),
+  (280, 'degree', 'DPsych', 'доктор психологических наук'),
+  (281, 'degree', 'DAgro', 'доктор сельскохозяйственных наук'),
+  (282, 'degree', 'DSocial', 'доктор социологических наук'),
+  (283, 'degree', 'D', 'доктор технических наук'),
+  (284, 'degree', 'DPharm', 'доктор фармацевтических наук'),
+  (285, 'degree', 'DPhM', 'доктор физико-математических наук'),
+  (286, 'degree', 'DPhil', 'доктор филологических наук'),
+  (287, 'degree', 'DPhilosophy', 'доктор философских наук'),
+  (288, 'degree', 'DChem', 'доктор химических наук'),
+  (289, 'degree', 'DEco', 'доктор экономических наук'),
+  (290, 'degree', 'DLaw', 'доктор юридических наук'),
+  (291, 'rank', 'o/r', 'без ученого звания'),
+  (292, 'rank', 'sns', 'Старший научный сотрудник'),
+  (293, 'rank', 'doc', 'Доцент'),
+  (294, 'rank', 'prof', 'Профессор'),
+  (295, 'rank', 'chlen-kor', 'Член-корреспондент РАН'),
+  (296, 'rank', 'chlen-kor RAMN', 'Член-корреспондент РАМН'),
+  (297, 'rank', 'chlen-kor RASHN', 'Член-корреспондент РАСХН'),
+  (298, 'rank', 'chlen-kor RAO', 'Член-корреспондент РАО'),
+  (299, 'rank', 'chlen-kor RAASN', 'Член-корреспондент РААСН'),
+  (300, 'rank', 'chlen-kor RAH', 'Член-корреспондент РАХ'),
+  (301, 'rank', 'academic', 'Академик РАН'),
+  (302, 'rank', 'academic RAMN', 'Академик РАМН'),
+  (303, 'rank', 'academic RASHN', 'Академик РАСХН'),
+  (304, 'rank', 'academic RAO', 'Академик РАО'),
+  (305, 'rank', 'academic RAASN', 'Академик РААСН'),
+  (306, 'rank', 'academic RAH', 'Академик PAX');
+  </query>
+    </queries>
+  </install>
+ 
+ <administration>
+  <!-- Administration Menu Section -->
+  <menu img="components/com_conference/images/icon-16.png">Conference</menu>
+  <submenu>
+    <menu act="reg">Registration</menu>
+    <menu act="hotel">Hotel</menu>
+    <menu act="tesis">Tesis</menu>
+  </submenu>
+  
+  <!-- Administration Main File Copy Section -->
+  <files folder="admin">
+	<filename>admin.conference.php</filename>
+	<filename>config.xml</filename>
+	<filename>index.html</filename>
+	<filename>views/conference.php</filename>
+	<filename>views/hotel.php</filename>
+	<filename>views/index.html</filename>
+	<filename>views/reg.php</filename>
+	<filename>views/tesis.php</filename>
+	<filename>tables/hotel.php</filename>
+	<filename>tables/index.html</filename>
+	<filename>tables/reg.php</filename>
+	<filename>tables/tesis.php</filename>
+	<filename>images/hotel-icon-48.png</filename>
+	<filename>images/icon-16.png</filename>
+	<filename>images/icon-32-export.png</filename>
+	<filename>images/index.html</filename>
+	<filename>images/register-icon-48.png</filename>
+	<filename>images/tesis-icon-48.png</filename>
+	<filename>controllers/conference.php</filename>
+	<filename>controllers/hotel.php</filename>
+	<filename>controllers/index.html</filename>
+	<filename>controllers/reg.php</filename>
+	<filename>controllers/tesis.php</filename>
+  </files>  
+   
+    <languages folder="admin">
+    <language tag="en-GB">language/en-GB/en-GB.com_conference.ini</language>
+    <language tag="en-GB">language/en-GB/en-GB.com_conference.menu.ini</language>
+    <language tag="ru-RU">language/ru-RU/ru-RU.com_conference.ini</language>
+    <language tag="ru-RU">language/ru-RU/ru-RU.com_conference.menu.ini</language>
+  </languages>
+  
+ </administration>  
+
+</install>

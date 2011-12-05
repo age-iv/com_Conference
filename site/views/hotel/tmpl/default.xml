@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+  <layout title="Заказ гостиницы">
+    <message>
+      <![CDATA[Разметка для формы заказа гостиницы]]>
+    </message>
+  </layout>
+  <state>
+    <name>Заказ гостиницы</name>
+  <params>
+    <param name="hotel" type="textarea" default="" label="hotel" rows="10" cols="50" description="Список доступных гостиниц. Названия гостиниц пишутся в одну строку, раздилителем служит |. Вводится без переноса на новую строку." />
+    <param name="type_room" type="textarea" default="" label="type_room" rows="10" cols="50" description="Тип комнат. Типы комнат пишутся в одну строку, раздилителем служит |. Вводится без переноса на новую строку." />
+    <param name="show_hotel" type="radio" default="1" label="hotel" description="show_or_hide_hotel">
+      <option value="0">No</option>
+      <option value="1">Yes</option>
+    </param>
+    <param name="show_type_room" type="radio" default="1" label="type_room" description="show_or_hide_type_room">
+      <option value="0">No</option>
+      <option value="1">Yes</option>
+    </param>
+    <param name="show_address" type="radio" default="1" label="address" description="show_or_hide_date_of_bith">
+      <option value="0">No</option>
+      <option value="1">Yes</option>
+    </param>
+    <param name="show_wish" type="radio" default="1" label="wish" description="show_or_hide_date_of_bith">
+      <option value="0">No</option>
+      <option value="1">Yes</option>
+    </param>
+  </params>
+  </state>
+</metadata>

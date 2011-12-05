@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+  <layout title="Отправка тезисов">
+    <message>
+      <![CDATA[Разметка для формы отправки тезисов]]>
+    </message>
+  </layout>
+  <state>
+    <name>Отправка тезисов</name>
+  <params>
+	<param name="end_tesis" type="calendar" default="" label="End date of tesis" description="DETAILENDTESIS" />
+    <param name="type_lecture" type="textarea" default="" label="type_lecture" rows="10" cols="50" description="Список видов докладов. Пишутся в одну строку, раздилителем служит |" />
+    <param name="sections" type="textarea" default="" label="sections" rows="10" cols="50" description="Список секций. Пишутся в одну строку, раздилителем служит |" />
+    <param name="show_type_lecture" type="radio" default="1" label="type_lecture" description="show_or_hide_type_lecture">
+      <option value="0">No</option>
+      <option value="1">Yes</option>
+    </param>
+    <param name="show_sections" type="radio" default="1" label="sections" description="show_or_hide_sections">
+      <option value="0">No</option>
+      <option value="1">Yes</option>
+    </param>
+    <param name="show_supervisor" type="radio" default="1" label="supervisor" description="show_or_hide_supervisor">
+      <option value="0">No</option>
+      <option value="1">Yes</option>
+    </param>
+  </params>
+  </state>
+</metadata>

@@ -1,0 +1,41 @@
+.stiker
+{ 
+    background-color:#ff0000; 
+    outline:1px solid #ff0000; 
+    border:2px solid #ffffff; 
+    padding: 5px 15px;
+    width: 70%;
+	font-size: 0.8em;
+    color:#ffffff; 
+    text-align:left; 
+	display: none;
+ 
+ 
+    /* outline radius for mozilla/firefox only */ 
+    -moz-outline-radius: 4px; 
+    -webkit-outline-radius: 4px; 
+	
+}
+
+.wrong
+{
+	color: #ff0000;
+}
+
+.common
+{
+	width: 100%;
+	text-align: center;
+	margin-top: 5px;
+	background-color:#ff0000;
+	color: #ffffff;
+	display: none;
+}
+
+#common_noscript
+{
+	width: 100%;
+	text-align: center;
+	margin-top: 5px;
+	font-weight: bolder;
+}

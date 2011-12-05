@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+	<params>
+		<param name="show_comp_description" type="radio" default="1" label="Description" description="Show/Hide the Description below">
+			<option value="0">Hide</option>
+			<option value="1">Show</option>
+		</param>
+		<param name="description" type="textarea" default="" label="Show Intro" rows="3" cols="50" description="DESC" />
+		<param name="@spacer" type="spacer" default="" label="" description="" />
+		<param name="show_headings" type="radio" default="1" label="Table Headings" description="Show/Hide the Table Headings">
+			<option value="0">Hide</option>
+			<option value="1">Show</option>
+		</param>
+	</params>
+</config>
